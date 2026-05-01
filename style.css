@@ -23,6 +23,7 @@ body.js-ready .reveal { opacity: 0; transform: translateY(30px); }
 body.js-ready .reveal.active { opacity: 1; transform: translateY(0); }
 main { overflow-x: hidden; width: 100%; min-height: 100vh; }
 .container { max-width: var(--container-w); margin: 0 auto; padding: 0 40px; }
+section.container { padding-top: 100px; padding-bottom: 100px; }
 
 /* ── Navigation ── */
 nav {
@@ -49,7 +50,7 @@ section { padding: 80px 0; }
 
 /* ── Hero ── */
 .hero { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; padding-top: 8rem; }
-.hero-title { font-size: clamp(2rem, 12vw, 6.5rem); line-height: 0.85; margin-bottom: 2rem; font-weight: 900; font-family: 'Syne', sans-serif; }
+.hero-title { font-size: clamp(2rem, 10vw, 6.5rem); line-height: 0.85; margin-bottom: 2rem; font-weight: 900; font-family: 'Syne', sans-serif; }
 
 /* ── Marquee ── */
 .marquee-container { background: var(--text); color: #fff; padding: 1.2rem 0; overflow: hidden; white-space: nowrap; margin: 3rem 0; transform: rotate(-1.2deg); width: 110vw; margin-left: -5vw; }
@@ -92,6 +93,54 @@ section { padding: 80px 0; }
 .contact-section { background: var(--primary); color: #fff; border-radius: 50px; padding: 6rem 2rem; text-align: center; }
 
 /* ── Utilities ── */
+/* ── Glassmorphism & Shiny Effects ── */
+.glass { 
+    background: rgba(255, 255, 255, 0.7); 
+    backdrop-filter: blur(15px); 
+    -webkit-backdrop-filter: blur(15px); 
+    border: 1px solid rgba(255, 255, 255, 0.4); 
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.glass::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transform: rotate(45deg);
+    transition: 0.8s;
+    pointer-events: none;
+}
+
+.glass:hover::before {
+    left: 100%;
+    top: 100%;
+}
+
+.bento-item { 
+    background: rgba(255, 255, 255, 0.5); 
+    backdrop-filter: blur(10px); 
+    border: 1px solid rgba(255, 255, 255, 0.3); 
+    border-radius: 28px; 
+    padding: 2rem; 
+    position: relative; 
+    overflow: hidden; 
+    transition: var(--transition); 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: flex-end; 
+}
+
 .reveal { opacity: 1; transform: none; transition: 1s var(--transition); }
 #cursor { width: 20px; height: 20px; background: var(--primary); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; mix-blend-mode: difference; transition: transform 0.1s; display: none; }
 
@@ -101,7 +150,8 @@ section { padding: 80px 0; }
 }
 
 @media (max-width: 768px) {
-    section { padding: 120px 0 !important; }
+    section, section.container { padding: 120px 20px !important; }
+    .container { padding: 0 20px !important; }
     #toolkit { margin-top: 0; }
     .nav-links { display: none; }
     .availability { display: none; } 
