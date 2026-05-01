@@ -5,8 +5,9 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. Mark body as loaded to trigger fallback visibility if needed
+    // 1. Mark body as loaded and js-ready to trigger animations
     document.body.classList.add('loaded');
+    document.body.classList.add('js-ready');
 
     // 2. Custom Cursor (Desktop Only)
     if (window.innerWidth > 768) {
